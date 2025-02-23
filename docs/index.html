@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mirage VD – Virtual Display App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --accent: #00E5EE;
+            --accent-dark: #00baba;
+            --text: #1F2937;
+            --text-light: #6B7280;
+            --background: #ffffff;
+            --background-alt: #F9FAFB;
+        }
+
+        body {
+            color: var(--text);
+            background: var(--background);
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+
+        header.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo and Nav */
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-1px);
+        }
+
+        .logo img {
+            height: 48px;
+            margin-right: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(-5deg);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+            background: linear-gradient(135deg, var(--primary), #8B5CF6);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="rgba(255,255,255,0.1)" x="0" y="0" width="100" height="100"/></svg>');
+            opacity: 0.1;
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0) }
+            10% { transform: translate(-5%, -5%) }
+            20% { transform: translate(5%, 5%) }
+            30% { transform: translate(-5%, 5%) }
+            40% { transform: translate(5%, -5%) }
+            50% { transform: translate(-5%, 0%) }
+            60% { transform: translate(5%, 0%) }
+            70% { transform: translate(0%, 5%) }
+            80% { transform: translate(0%, -5%) }
+            90% { transform: translate(-2%, 2%) }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 229, 238, 0.3);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            transition: transform 0.6s ease;
+        }
+
+        .btn-primary:active::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6rem 2rem;
+            background: var(--background-alt);
+        }
+
+        .features h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .feature {
+            background: var(--background);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+
+        .feature img {
+            height: 70px;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover img {
+            transform: scale(1.1);
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .feature p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--background);
+            border-top: 1px solid rgba(229, 231, 235, 0.5);
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 1.5rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .features {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <a href="#" class="logo">
+        <img src="images/icon.png" alt="Mirage VD Icon" />
+        Mirage VD
+    </a>
+    <nav>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#download">Download</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Mirage VD</h1>
+    <p>Create a virtual display on your wide screen. Share exactly what you want with no extra hardware.</p>
+    <button class="btn-primary" id="download">Download Now</button>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+    <h2>Features</h2>
+    <div class="feature-list">
+        <div class="feature">
+            <img src="images/screen-share-icon.svg" alt="Share Icon">
+            <h3>Selective Screen Sharing</h3>
+            <p>Share a specific region of your screen, and share the virtual display using recognized by apps like MS Teams or Zoom.</p>
+        </div>
+        <div class="feature">
+            <img src="images/integration-icon.svg" alt="Security Icon">
+            <h3>Integration with Popular Apps</h3>
+            <p>Works out of the box with common video conferencing apps like Google Meet, and Microsoft Teams, without additional plugins or configuration.</p>
+        </div>
+        <div class="feature">
+            <img src="images/simple-icon.svg" alt="Simple Icon">
+            <h3>Simple Setup</h3>
+            <p>Install once, and Mirage VD appears as an additional monitor in your OS. No extra drivers or cables required.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; <span id="year"></span> Mirage VD. All rights reserved.
+    </p>
+</footer>
+
+<script>
+    // Update year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>
