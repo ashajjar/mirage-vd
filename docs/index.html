@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mirage VD – Virtual Display App</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQEP7YS618"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-TQEP7YS618');
+    </script>
+
     <link rel="icon" type="image/png" href="images/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
     <style>
         /* Base Reset */
         * {
@@ -131,16 +144,47 @@
         }
 
         @keyframes grain {
-            0%, 100% { transform: translate(0, 0) }
-            10% { transform: translate(-5%, -5%) }
-            20% { transform: translate(5%, 5%) }
-            30% { transform: translate(-5%, 5%) }
-            40% { transform: translate(5%, -5%) }
-            50% { transform: translate(-5%, 0%) }
-            60% { transform: translate(5%, 0%) }
-            70% { transform: translate(0%, 5%) }
-            80% { transform: translate(0%, -5%) }
-            90% { transform: translate(-2%, 2%) }
+
+            0%,
+            100% {
+                transform: translate(0, 0)
+            }
+
+            10% {
+                transform: translate(-5%, -5%)
+            }
+
+            20% {
+                transform: translate(5%, 5%)
+            }
+
+            30% {
+                transform: translate(-5%, 5%)
+            }
+
+            40% {
+                transform: translate(5%, -5%)
+            }
+
+            50% {
+                transform: translate(-5%, 0%)
+            }
+
+            60% {
+                transform: translate(5%, 0%)
+            }
+
+            70% {
+                transform: translate(0%, 5%)
+            }
+
+            80% {
+                transform: translate(0%, -5%)
+            }
+
+            90% {
+                transform: translate(-2%, 2%)
+            }
         }
 
         .hero h1 {
@@ -165,6 +209,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -240,7 +285,7 @@
             background: var(--background);
             padding: 2rem;
             border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
@@ -249,7 +294,7 @@
 
         .feature:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .feature img {
@@ -334,80 +379,109 @@
         }
     </style>
 </head>
+
 <body>
 
-<!-- Header -->
-<header>
-    <a href="#" class="logo">
-        <img src="images/icon.png" alt="Mirage VD Icon" />
-        Mirage VD
-    </a>
-    <nav>
-        <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#download">Download</a></li>
-        </ul>
-    </nav>
-</header>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <img src="images/icon.png" alt="Mirage VD Icon" />
+            Mirage VD
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- Hero Section -->
-<section class="hero">
-    <h1>Mirage VD</h1>
-    <p>Create a virtual display on your wide screen. Share exactly what you want with no extra hardware.</p>
-    <button class="btn-primary" id="download" onclick="window.location.href='https://github.com/ashajjar/mirage-vd/releases/download/1.0.1/MirageVD.dmg'">Download Now</button>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Mirage VD</h1>
+        <p>Create a virtual display on your wide screen. Share exactly what you want with no extra hardware.</p>
+        <button class="btn-primary" id="download"
+            onclick="window.location.href='https://github.com/ashajjar/mirage-vd/releases/download/1.0.1/MirageVD.dmg'">Download
+            Now</button>
+    </section>
 
-<!-- Features Section -->
-<section class="features" id="features">
-    <h2>Features</h2>
-    <div class="feature-list">
-        <div class="feature">
-            <img src="images/screen-share-icon.svg" alt="Share Icon">
-            <h3>Selective Screen Sharing</h3>
-            <p>Share a specific region of your screen, and share the virtual display using recognized by apps like MS Teams or Zoom 🖥️ </p>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Features</h2>
+        <div class="feature-list">
+            <div class="feature">
+                <img src="images/screen-share-icon.svg" alt="Share Icon">
+                <h3>Selective Screen Sharing</h3>
+                <p>Share a specific region of your screen, and share the virtual display using recognized by apps like
+                    MS Teams or Zoom.</p>
+            </div>
+            <div class="feature">
+                <img src="images/integration-icon.svg" alt="Security Icon">
+                <h3>Integration with Popular Apps</h3>
+                <p>Works out of the box with common video conferencing apps like Google Meet, and Microsoft Teams,
+                    without additional plugins or configuration.</p>
+            </div>
+            <div class="feature">
+                <img src="images/simple-icon.svg" alt="Simple Icon">
+                <h3>Simple Setup</h3>
+                <p>Install once, and Mirage VD appears as an additional monitor in your OS. No extra drivers or cables
+                    required.</p>
+            </div>
         </div>
-        <div class="feature">
-            <img src="images/integration-icon.svg" alt="Security Icon">
-            <h3>Integration with Popular Apps</h3>
-            <p>Works out of the box with common video conferencing apps like Google Meet, and Microsoft Teams, without additional plugins or configuration ✅</p>
-        </div>
-        <div class="feature">
-            <img src="images/simple-icon.svg" alt="Simple Icon">
-            <h3>Simple Setup</h3>
-            <p>Install, permit screen recording, and start miroring custom regions of your screen 🎉</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; <span id="year"></span> Mirage VD. All rights reserved.
-    </p>
-</footer>
 
-<script>
-    // Update year automatically
-    document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Mirage VD. All rights reserved.
+        </p>
+    </footer>
 
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    <script>
+        // Update year automatically
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
-    });
-</script>
+
+        // Track downloads
+        document.querySelector('#download').addEventListener('click', function () {
+            gtag('event', 'download', {
+                'app_name': 'MirageVD',
+                'version': '1.0.1'
+            });
+        });
+
+        // Track feature section views
+        const observeFeatures = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gtag('event', 'view_features', {
+                        'feature_section': 'main'
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observeFeatures.observe(document.querySelector('#features'));
+    </script>
 </body>
+
 </html>
